@@ -54,7 +54,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             right: 20,
              child: InkWell(
                onTap: () {
-                  Get.offAll(() => Home());
+                  Get.offAll(() => HomePage());
               },
                child: Text(
                'Skip',

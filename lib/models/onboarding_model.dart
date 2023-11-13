@@ -61,7 +61,7 @@ class OnboardingSlide extends StatelessWidget {
                   if (currentPage < 2) {
                   pageController.animateToPage(currentPage + 1, duration: Duration(milliseconds: 300), curve: Curves.ease);
                 } else {
-                  Get.offAll(() => Home());
+                  Get.offAll(() => HomePage());
                 }
                 },
                 style: ElevatedButton.styleFrom(
