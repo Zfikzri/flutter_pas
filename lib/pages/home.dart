@@ -19,12 +19,19 @@ class _HomePageState extends State<HomePage> {
   bool isFavourite = false;
 
   List<Map<String, dynamic>> categories = [
-    {'image': 'assets/cg1.png','name': 'Lipstick',},
-    {'image': 'assets/cg2.png','name': 'Mascara',},
-    {'image': 'assets/cg3.png','name': 'Eye Palette',},
+    {
+      'image': 'assets/cg1.png',
+      'name': 'Lipstick',
+    },
+    {
+      'image': 'assets/cg2.png',
+      'name': 'Mascara',
+    },
+    {
+      'image': 'assets/cg3.png',
+      'name': 'Eye Palette',
+    },
   ];
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Padding(
               padding: allPadding,
-              child: CustomTextField(hintText: "Search...")
+              child: CustomTextField(hintText: "Search..."),
             ),
             Obx(() {
               return Column(
@@ -59,18 +66,26 @@ class _HomePageState extends State<HomePage> {
                             padding: const EdgeInsets.all(8.0),
                             child: Card(
                               child: Container(
-                                width: 150,
+                                width: 160,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10)),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Stack(
                                       alignment: Alignment.topRight,
                                       children: [
-                                        Image.network(
-                                          product.imageLink,
-                                          height: 170,
-                                          width: double.infinity,
-                                          fit: BoxFit.cover,
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                              10),
+                                          child: Image.network(
+                                            product.imageLink,
+                                            height: 160,
+                                            width: double.infinity,
+                                            fit: BoxFit.cover,
+                                            alignment: Alignment.center,
+                                          ),
                                         ),
                                         IconButton(
                                           icon: Icon(
@@ -123,7 +138,10 @@ class _HomePageState extends State<HomePage> {
                 ],
               );
             }),
-            Categories(title: "Categories", subTitle: "Show All", categories: categories),
+            Categories(
+                title: "Categories",
+                subTitle: "Show All",
+                categories: categories),
             Padding(
               padding: allPadding,
               child: Column(
@@ -133,97 +151,95 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
-              padding: allPadding,
-              child: Obx(() {
-                return Container(
-                  height: 600,
-                  child: ListView.builder(
-                    itemCount: (productController.productResponModelCtr.length / 2)
-                        .ceil(),
-                    itemBuilder: (BuildContext context, int index) {
-                      final product =
-                          productController.productResponModelCtr[index];
-                      int startIndex = index * 2;
-                      int endIndex = (index + 1) * 2;
-                      if (endIndex >
-                          productController.productResponModelCtr.length) {
-                        endIndex =
-                            productController.productResponModelCtr.length;
-                      }
+  padding: allPadding,
+  child: Obx(() {
+    return Container( 
+      child: ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: (productController.productResponModelCtr.length / 2).ceil(),
+        itemBuilder: (BuildContext context, int index) {
+          int startIndex = index * 2;
+          int endIndex = startIndex + 2;
+          if (endIndex > productController.productResponModelCtr.length) {
+            endIndex = productController.productResponModelCtr.length;
+          }
 
-                      return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: List.generate(endIndex - startIndex,
-                              (subIndex) {
-                            return Card(
-                              child: Container(
-                                width: 180,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Stack(
-                                      alignment: Alignment.topRight,
-                                      children: [
-                                        Image.network(
-                                          product.imageLink,
-                                          height: 190,
-                                          width: double.infinity,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        IconButton(
-                                          icon: Icon(
-                                            Icons.favorite_outline,
-                                            color: Color(0xFF830835),
-                                          ),
-                                          onPressed: () {
-                                            print('Icon Heart pressed ...');
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 8.0,
-                                        vertical: 3.0,
-                                      ),
-                                      child: Text(
-                                        product.name,
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                          fontFamily: "ProductSans",
-                                          color: Color(0xFF830835),
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 8.0,
-                                        vertical: 3.0,
-                                      ),
-                                      child: Text(
-                                        '\$${product.price}',
-                                        style: TextStyle(
-                                          fontFamily: "ProductSans",
-                                          color: Color(0xFF830835),
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: List.generate(endIndex - startIndex, (subIndex) {
+                final product =
+                    productController.productResponModelCtr[startIndex + subIndex];
+                return Card(
+                  child: Container(
+                    width: 180,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Stack(
+                          alignment: Alignment.topRight,
+                          children: [
+                            Image.network(
+                              product.imageLink,
+                              height: 190,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.favorite_outline,
+                                color: Color(0xFF830835),
                               ),
-                            );
-                          }),
+                              onPressed: () {
+                                print('Icon Heart pressed ...');
+                              },
+                            ),
+                          ],
                         ),
-                      );
-                    },
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 8.0,
+                            vertical: 3.0,
+                          ),
+                          child: Text(
+                            product.name,
+                            maxLines: 2,
+                            style: TextStyle(
+                              fontFamily: "ProductSans",
+                              color: Color(0xFF830835),
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 8.0,
+                            vertical: 3.0,
+                          ),
+                          child: Text(
+                            '\$${product.price}',
+                            style: TextStyle(
+                              fontFamily: "ProductSans",
+                              color: Color(0xFF830835),
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }),
             ),
+          );
+        },
+      ),
+    );
+  }),
+),
+
           ],
         ),
       ),
