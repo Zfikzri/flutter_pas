@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "584641518295",
+    "project_id": "aeria-project",
+    "storage_bucket": "aeria-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584641518295:android:062212258dec3c665cee92",
+        "android_client_info": {
+          "package_name": "com.example.flutter_pas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOIpQysyeVd7BrZhPb4yWfqQG4xBtVnng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

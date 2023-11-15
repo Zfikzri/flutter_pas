@@ -1,6 +1,6 @@
 import 'package:flutter_pas/models/onboarding_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pas/pages/home.dart';
+import 'package:flutter_pas/pages/login.dart';
 import 'package:get/get.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -54,7 +54,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             right: 20,
              child: InkWell(
                onTap: () {
-                  Get.offAll(() => Home());
+                  Get.offAll(() => LoginPage());
               },
                child: Text(
                'Skip',

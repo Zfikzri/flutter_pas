@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pas/pages/home.dart';
+import 'package:flutter_pas/pages/login.dart';
 import 'package:get/get.dart';
 
 class OnboardingSlide extends StatelessWidget {
@@ -61,7 +61,7 @@ class OnboardingSlide extends StatelessWidget {
                   if (currentPage < 2) {
                   pageController.animateToPage(currentPage + 1, duration: Duration(milliseconds: 300), curve: Curves.ease);
                 } else {
-                  Get.offAll(() => Home());
+                  Get.offAll(() => LoginPage());
                 }
                 },
                 style: ElevatedButton.styleFrom(
