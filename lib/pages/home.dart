@@ -4,6 +4,7 @@ import 'package:flutter_pas/models/appbar.dart';
 import 'package:flutter_pas/models/categories.dart';
 import 'package:flutter_pas/models/header.dart';
 import 'package:flutter_pas/models/navbar.dart';
+import 'package:flutter_pas/models/product_card.dart';
 import 'package:flutter_pas/models/textfield.dart';
 import 'package:get/get.dart';
 
@@ -77,8 +78,8 @@ class _HomePageState extends State<HomePage> {
                                       alignment: Alignment.topRight,
                                       children: [
                                         ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                              10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           child: Image.network(
                                             product.imageLink,
                                             height: 160,
@@ -150,96 +151,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            Padding(
-  padding: allPadding,
-  child: Obx(() {
-    return Container( 
-      child: ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: (productController.productResponModelCtr.length / 2).ceil(),
-        itemBuilder: (BuildContext context, int index) {
-          int startIndex = index * 2;
-          int endIndex = startIndex + 2;
-          if (endIndex > productController.productResponModelCtr.length) {
-            endIndex = productController.productResponModelCtr.length;
-          }
-
-          return Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(endIndex - startIndex, (subIndex) {
-                final product =
-                    productController.productResponModelCtr[startIndex + subIndex];
-                return Card(
-                  child: Container(
-                    width: 180,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Stack(
-                          alignment: Alignment.topRight,
-                          children: [
-                            Image.network(
-                              product.imageLink,
-                              height: 190,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                            IconButton(
-                              icon: Icon(
-                                Icons.favorite_outline,
-                                color: Color(0xFF830835),
-                              ),
-                              onPressed: () {
-                                print('Icon Heart pressed ...');
-                              },
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 8.0,
-                            vertical: 3.0,
-                          ),
-                          child: Text(
-                            product.name,
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontFamily: "ProductSans",
-                              color: Color(0xFF830835),
-                              fontSize: 13,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 8.0,
-                            vertical: 3.0,
-                          ),
-                          child: Text(
-                            '\$${product.price}',
-                            style: TextStyle(
-                              fontFamily: "ProductSans",
-                              color: Color(0xFF830835),
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
-            ),
-          );
-        },
-      ),
-    );
-  }),
-),
-
+            ProductListWidget(products: productController.productResponModelCtr)
           ],
         ),
       ),

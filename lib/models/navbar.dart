@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pas/pages/dummy.dart';
+import 'package:flutter_pas/pages/cart.dart';
+import 'package:flutter_pas/pages/catalogue.dart';
 import 'package:flutter_pas/pages/home.dart';
 
 import 'package:get/get.dart';
@@ -13,11 +14,12 @@ class Navbar extends StatelessWidget {
     if (index == 0) {
       Get.offAll(HomePage());
     } else if (index == 1) {
-      Get.offAll(Dummy());    
+      Get.offAll(Catalogue());    
     }
-    // else if(index == 2){
-    //   Get.offAll(Dummy());
+    else if(index == 2){
+      Get.offAll(Cart());
   }
+}
 
   @override
   Widget build(BuildContext context) {
