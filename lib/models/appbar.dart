@@ -15,16 +15,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        IconButton(
-          icon: Icon(
-            Icons.favorite,
-            size: 36,
-            color: Color(0xFF830835),
-          ),
-          onPressed: () {
-            print('IconButton pressed ...');
-          },
-        ),
         Container(
           width: 45,
           margin: EdgeInsets.only(right: 15),

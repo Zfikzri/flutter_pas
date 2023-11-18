@@ -15,14 +15,6 @@ class AppBarCatalogue extends StatelessWidget implements PreferredSizeWidget {
           color: Color(0xFF830835),
         ),
       ),
-      actions: [
-        IconButton(
-          icon: Icon(Icons.favorite),
-          iconSize: 30,
-          color: Color(0xFF830835),
-          onPressed: (){},
-        ),
-      ],
     );
   }
 

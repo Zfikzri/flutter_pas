@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
+  final ValueChanged<String>? onChanged;
+  final TextEditingController? controller;
 
-  const CustomTextField({Key? key, required this.hintText}) : super(key: key);
+  const CustomTextField({
+    Key? key,
+    required this.hintText,
+    this.onChanged,
+    this.controller,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +28,8 @@ class CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
           ),
         ),
+        onChanged: onChanged,
+        controller: controller,
       ),
     );
   }
