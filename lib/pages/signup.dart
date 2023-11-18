@@ -1,29 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pas/pages/home.dart';
+import 'package:flutter_pas/controller/ControllerSignup.dart';
 import 'package:flutter_pas/pages/login.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
-GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: [
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ],
-);
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
-
-  TextEditingController usncontroller = TextEditingController();
-  TextEditingController pwcontroller = TextEditingController();
-  TextEditingController emailcontroller = TextEditingController();
+  final registerController= Get.put(RegisterController());
+  final TextEditingController ctrUsername = TextEditingController();
+  final TextEditingController ctrPassword = TextEditingController();
+  final TextEditingController ctrConfirm = TextEditingController();
+  final TextEditingController ctrEmail = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
+      body:Stack(
           children: [
             Image.asset('assets/loginpage.png'),
             Container(
@@ -62,13 +54,13 @@ class SignUpPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
                     SizedBox(
                       height: 40,
                       width: double.infinity,
                       child: TextField(
-                        controller: usncontroller,
+                        controller: ctrUsername,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.person),
                             prefixIconColor: Color(0xffC75E84),
@@ -96,7 +88,7 @@ class SignUpPage extends StatelessWidget {
                     SizedBox(
                       height: 40,
                       child: TextField(
-                        controller: emailcontroller,
+                        controller: ctrEmail,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.mail),
                             prefixIconColor: Color(0xffC75E84),
@@ -124,7 +116,8 @@ class SignUpPage extends StatelessWidget {
                     SizedBox(
                       height: 40,
                       child: TextField(
-                        controller: pwcontroller,
+                        controller: ctrPassword,
+                        obscureText: true,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.lock),
                             prefixIconColor: Color(0xffC75E84),
@@ -148,10 +141,40 @@ class SignUpPage extends StatelessWidget {
                     ),
                     SizedBox(height:10,),
                     SizedBox(
+                      height: 40,
+                      width: double.infinity,
+                      child: TextField(
+                        controller: ctrConfirm,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.lock_person),
+                            prefixIconColor: Color(0xffC75E84),
+                            hintText: 'Confirm Password',
+                            hintStyle: TextStyle(
+                              fontFamily: 'ProductSans',
+                              color: Color(0xffC75E84),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color(0xffC75E84), width: 1)),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Color(0xffC75E84), width: 1),
+                            ),
+                            focusColor: Color(0xffC75E84),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 10)),
+                        style: TextStyle(
+                            color: Color(0xffC75E84), fontFamily: 'ProductSans'),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
                       height: 50,
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () => Get.to(Home()),
+                        onPressed: () => registerController.registerAction(ctrUsername.text, ctrEmail.text, ctrPassword.text, ctrConfirm.text),
                         style: ElevatedButton.styleFrom(
                             primary: Color(0xffC75E84),
                             shape: RoundedRectangleBorder(
@@ -225,7 +248,6 @@ class SignUpPage extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
+      );
   }
 }

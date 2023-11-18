@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pas/pages/home.dart';
+import 'package:flutter_pas/controller/ControllerLogin.dart';
 import 'package:flutter_pas/pages/signup.dart';
 import 'package:get/get.dart';
 
-
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+  final loginController = Get.put(LoginController());
+  final TextEditingController ctrUsername = TextEditingController();
+  final TextEditingController ctrPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
+      body: Stack(
           children: [
-            Image.asset('assets/loginpage.png'),
+            Image.asset(
+              'assets/loginpage.png',
+            ),
             Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10)),
                   color: Color(0xffF8E8EE)),
-              margin:
-                  EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3),
-              height: double.infinity,
-              width: double.infinity,
+              margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.3),
+                width: double.infinity,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Column(
@@ -56,10 +58,11 @@ class LoginPage extends StatelessWidget {
                       height: 40,
                       width: double.infinity,
                       child: TextField(
+                        controller: ctrUsername,
                         decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.mail),
+                            prefixIcon: Icon(Icons.person),
                             prefixIconColor: Color(0xffC75E84),
-                            hintText: 'Email',
+                            hintText: 'Username',
                             hintStyle: TextStyle(
                               fontFamily: 'ProductSans',
                               color: Color(0xffC75E84),
@@ -68,13 +71,15 @@ class LoginPage extends StatelessWidget {
                                 borderSide: BorderSide(
                                     color: Color(0xffC75E84), width: 1)),
                             focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Color(0xffC75E84), width: 1),
+                              borderSide: BorderSide(
+                                  color: Color(0xffC75E84), width: 1),
                             ),
                             focusColor: Color(0xffC75E84),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 10)),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10)),
                         style: TextStyle(
-                            color: Color(0xffC75E84), fontFamily: 'ProductSans'),
+                            color: Color(0xffC75E84),
+                            fontFamily: 'ProductSans'),
                       ),
                     ),
                     SizedBox(
@@ -83,6 +88,8 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: 40,
                       child: TextField(
+                        controller: ctrPassword,
+                        obscureText: true,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.lock),
                             prefixIconColor: Color(0xffC75E84),
@@ -95,13 +102,15 @@ class LoginPage extends StatelessWidget {
                                 borderSide: BorderSide(
                                     color: Color(0xffC75E84), width: 1)),
                             focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Color(0xffC75E84), width: 1),
+                              borderSide: BorderSide(
+                                  color: Color(0xffC75E84), width: 1),
                             ),
                             focusColor: Color(0xffC75E84),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 10)),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10)),
                         style: TextStyle(
-                            color: Color(0xffC75E84), fontFamily: 'ProductSans'),
+                            color: Color(0xffC75E84),
+                            fontFamily: 'ProductSans'),
                       ),
                     ),
                     SizedBox(
@@ -111,7 +120,10 @@ class LoginPage extends StatelessWidget {
                       height: 50,
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () => Get.to(Home()),
+                        onPressed: () async{
+                          loginController.loginAction(ctrUsername.text, ctrPassword.text);
+
+                        },
                         style: ElevatedButton.styleFrom(
                             primary: Color(0xffC75E84),
                             shape: RoundedRectangleBorder(
@@ -150,7 +162,8 @@ class LoginPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             primary: Color(0xffC75E84),
-                            side: BorderSide(width: 1, color: Color(0xffC75E84))),
+                            side:
+                                BorderSide(width: 1, color: Color(0xffC75E84))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -174,7 +187,7 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-      
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -204,7 +217,6 @@ class LoginPage extends StatelessWidget {
             )
           ],
         ),
-      ),
     );
   }
 }
