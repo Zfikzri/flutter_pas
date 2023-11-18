@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pas/pages/home.dart';
+import 'package:flutter_pas/pages/onboarding.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(
-      Duration(seconds: 5), 
+      Duration(seconds: 4), 
       () {
-        Get.offAll(() => Home()); 
+        Get.offAll(() => OnboardingPage()); 
       },
     );
 
