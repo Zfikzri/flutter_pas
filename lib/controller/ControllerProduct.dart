@@ -6,6 +6,8 @@ class ControllerProduct extends GetxController {
   RxList<Product> productResponModelCtr =
       <Product>[].obs;
 
+  RxBool isLoading = true.obs;   
+
   @override
   void onInit(){
     super.onInit();
@@ -23,6 +25,7 @@ class ControllerProduct extends GetxController {
       } else {
         print("status code : " + response.statusCode.toString());
       }
+      isLoading.value = false;
 
     }catch(e){
       print("error : "+e.toString());
