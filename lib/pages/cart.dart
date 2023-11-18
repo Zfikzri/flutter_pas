@@ -21,6 +21,7 @@ class _CartState extends State<Cart> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          //aku ganteng
           if (cartItems.isEmpty)
             Center(
               child: Column(
