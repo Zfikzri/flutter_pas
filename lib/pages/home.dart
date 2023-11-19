@@ -5,7 +5,6 @@ import 'package:flutter_pas/models/categories.dart';
 import 'package:flutter_pas/models/header.dart';
 import 'package:flutter_pas/models/navbar.dart';
 import 'package:flutter_pas/models/product_card.dart';
-import 'package:flutter_pas/models/textfield.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,10 +43,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: allPadding,
-              child: CustomTextField(hintText: "Search..."),
-            ),
+            
             Obx(() {
               return Column(
                 children: [
