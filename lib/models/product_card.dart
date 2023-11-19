@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pas/api/product.dart';
 import 'package:flutter_pas/controller/ControllerProduct.dart';
+import 'package:flutter_pas/pages/detail.dart';
 import 'package:get/get.dart';
 
 class ProductListWidget extends StatelessWidget {
@@ -47,64 +48,57 @@ class ProductListWidget extends StatelessWidget {
   }
 
   Widget buildProductCard(Product product) {
-    return Card(
-      child: Container(
-        width: 180,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              alignment: Alignment.topRight,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                    product.imageLink,
-                    height: 160,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    alignment: Alignment.center,
-                  ),
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => DetailPage(product: product));
+      },
+      child: Card(
+        child: Container(
+          width: 180,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  product.imageLink,
+                  height: 160,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  alignment: Alignment.center,
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.favorite_outline,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 3.0,
+                ),
+                child: Text(
+                  product.name,
+                  maxLines: 2,
+                  style: TextStyle(
+                    fontFamily: "ProductSans",
                     color: Color(0xFF830835),
+                    fontSize: 13,
                   ),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 8.0,
-                vertical: 3.0,
-              ),
-              child: Text(
-                product.name,
-                maxLines: 2,
-                style: TextStyle(
-                  fontFamily: "ProductSans",
-                  color: Color(0xFF830835),
-                  fontSize: 13,
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 8.0,
-                vertical: 3.0,
-              ),
-              child: Text(
-                '\$${product.price}',
-                style: TextStyle(
-                  fontFamily: "ProductSans",
-                  color: Color(0xFF830835),
-                  fontSize: 18,
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 3.0,
+                ),
+                child: Text(
+                  '\$${product.price}',
+                  style: TextStyle(
+                    fontFamily: "ProductSans",
+                    color: Color(0xFF830835),
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
