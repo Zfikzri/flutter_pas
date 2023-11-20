@@ -49,11 +49,14 @@ class RegisterController extends GetxController {
 
       if(response.statusCode == 200) {
         final responseData = registerResponseModelFromJson(response.body);
-        message.value = responseData.message;
+       
 
-        isLoading.value = false;
+       if(responseData.message == "Account Created Successfully"){
+        
+        Get.off(() => LoginPage());
+       }
 
-        if(responseData.status) Get.off(() => LoginPage());
+
       } else {
         print("status code: ${response.statusCode}");
       }

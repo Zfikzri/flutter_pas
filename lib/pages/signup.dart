@@ -174,7 +174,9 @@ class SignUpPage extends StatelessWidget {
                       height: 50,
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () => registerController.registerAction(ctrUsername.text, ctrEmail.text, ctrPassword.text, ctrConfirm.text),
+                        onPressed: () async{
+                           registerController.registerAction(ctrUsername.text, ctrEmail.text, ctrPassword.text, ctrConfirm.text);
+                        },
                         style: ElevatedButton.styleFrom(
                             primary: Color(0xffC75E84),
                             shape: RoundedRectangleBorder(
@@ -189,41 +191,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 10),
-                    Text(
-                      'OR',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontFamily: 'ProductSans',
-                          fontSize: 20,
-                          color: Color(0xff871740)),
-                    ),
-                    SizedBox(height: 10,),
-                    //  
-                    Container(
-                      width: double.infinity,
-                      height: 50,
-                      child: OutlinedButton(onPressed: () {}, 
-                      style: OutlinedButton.styleFrom(
-                        shadowColor: Colors.transparent,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        primary: Color(0xffC75E84), 
-                        side: BorderSide(width: 1, color: Color(0xffC75E84))
-                      ),
-                      child:
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset('assets/google.png', width: 20, height: 20,),
-                          SizedBox(width: 5,),
-                          Text('Continue with Google', style: TextStyle(fontFamily: 'ProductSans', fontSize: 16, color: Color(0xffC75E84)))
-                        ],
-                      ),
-                      
-                      ),
-                    ),
+                    
                     SizedBox(height: 10,),
       
                      Row(

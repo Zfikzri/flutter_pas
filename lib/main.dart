@@ -3,6 +3,7 @@ import 'package:flutter_pas/pages/splash.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
 
+
 void main() {
   runApp(const MyApp());
 }

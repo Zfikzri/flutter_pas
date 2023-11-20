@@ -77,6 +77,7 @@ flutter:
     - assets/cg1.png
     - assets/cg2.png
     - assets/cg3.png
+    - assets/noprofile.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

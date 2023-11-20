@@ -5,6 +5,7 @@ import 'package:flutter_pas/models/categories.dart';
 import 'package:flutter_pas/models/header.dart';
 import 'package:flutter_pas/models/navbar.dart';
 import 'package:flutter_pas/models/product_card.dart';
+import 'package:flutter_pas/pages/detail.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
@@ -43,7 +44,6 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            
             Obx(() {
               return Column(
                 children: [
@@ -59,71 +59,57 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder: (BuildContext context, int index) {
                           final product =
                               productController.productResponModelCtr[index];
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(
-                              child: Container(
-                                width: 160,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Stack(
-                                      alignment: Alignment.topRight,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          child: Image.network(
-                                            product.imageLink,
-                                            height: 160,
-                                            width: double.infinity,
-                                            fit: BoxFit.cover,
-                                            alignment: Alignment.center,
-                                          ),
+                          return GestureDetector(
+                            onTap: () {
+                              Get.to(() => DetailPage(product: product));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Card(
+                                child: Container(
+                                  width: 160,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                          product.imageLink,
+                                          height: 160,
+                                          width: double.infinity,
+                                          fit: BoxFit.cover,
+                                          alignment: Alignment.center,
                                         ),
-                                        IconButton(
-                                          icon: Icon(
-                                            isFavourite
-                                                ? Icons.favorite_outline
-                                                : Icons.favorite,
-                                            size: 25,
-                                            color: Color(0xFF830835),
-                                          ),
-                                          onPressed: () {
-                                            setState(() {
-                                              isFavourite = !isFavourite;
-                                            });
-                                          },
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8.0, vertical: 3.0),
+                                        child: Text(
+                                          product.name,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                              fontFamily: "ProductSans",
+                                              color: Color(0xFF830835),
+                                              fontSize: 13),
                                         ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 8.0, vertical: 3.0),
-                                      child: Text(
-                                        product.name,
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                            fontFamily: "ProductSans",
-                                            color: Color(0xFF830835),
-                                            fontSize: 13),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 8.0, vertical: 3.0),
-                                      child: Text(
-                                        '\$${product.price}',
-                                        style: TextStyle(
-                                            fontFamily: "ProductSans",
-                                            color: Color(0xFF830835),
-                                            fontSize: 18),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8.0, vertical: 3.0),
+                                        child: Text(
+                                          '\$${product.price}',
+                                          style: TextStyle(
+                                              fontFamily: "ProductSans",
+                                              color: Color(0xFF830835),
+                                              fontSize: 18),
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

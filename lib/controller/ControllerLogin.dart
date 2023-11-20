@@ -35,7 +35,7 @@ class LoginController extends GetxController {
         headers: headers,
         body: body,
       );
-print(response.body);
+      print(response.body);
       if(response.statusCode == 200) {
 
         
@@ -47,10 +47,11 @@ print(response.body);
     if(responseData.token != null && responseData.token != ""){
          prefs = await SharedPreferences.getInstance();
      await prefs.setString('token', responseData.token);
-     
-     await prefs.setString('username', username); 
+     await prefs.setString('username', username);
+      print(prefs.getString('username'));
+             Get.offAll(() => HomePage());
     }
-        Get.offAll(() => HomePage());
+
          
       } else {
         print("status code: ${response.statusCode}");

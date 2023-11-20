@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/controller/ControllerProfile.dart';
 import 'package:flutter_pas/models/navbar.dart';
+import 'package:flutter_pas/pages/login.dart';
+import 'package:get/get.dart';
 
 class AccountPage extends StatelessWidget {
   Future<void> _showLogoutConfirmation(BuildContext context) async {
@@ -19,7 +22,8 @@ class AccountPage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop(); 
+                Get.offAll(() => LoginPage());// Close the dialog
                 // Perform logout action or navigate to another page
               },
               child: Text('Yes'),
@@ -30,8 +34,11 @@ class AccountPage extends StatelessWidget {
     );
   }
 
+
+  
   @override
   Widget build(BuildContext context) {
+    ProfileController controller=Get.put(ProfileController());
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
@@ -42,8 +49,8 @@ class AccountPage extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 240,
-              child: Image(
-                image: AssetImage('assets/images/bg.png'),
+              child: Image.asset(
+              'assets/loginpage.png',
                 fit: BoxFit.cover,
               ),
             ),
@@ -53,25 +60,26 @@ class AccountPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Gambar lingkaran di antara gambar latar belakang dan warna latar belakang
-                  Positioned(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 40),
-                      height: 150,
-                      width: 150,
-                      child: ClipOval(
-                        child: Image(
-                          image: AssetImage('assets/images/kyliejenner.jpeg'),
-                          fit: BoxFit.cover,
-                        ),
+                  Container(
+                    margin: EdgeInsets.only(top: 40),
+                    alignment: Alignment.topCenter, // Sesuaikan dengan kebutuhan Anda
+                    height: 150,
+                    width: 150,
+                    child: ClipOval(
+                      child: Image(
+                        image: AssetImage('assets/noprofile.png'),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
+
                   SizedBox(height: 16),
                   Container(
-                    child: Text(
-                      'Kylie Jenner',
-                      style: TextStyle(
-                          color: Color.fromRGBO(135, 23, 64, 1), fontSize: 24),
+                    child: Obx(() =>Text(
+                        '${controller.username.value}',
+                        style: TextStyle(
+                            color: Color.fromRGBO(135, 23, 64, 1), fontSize: 24, fontFamily: 'ProductSans'),
+                      ),
                     ),
                   ),
                   SizedBox(height: 60),
@@ -221,7 +229,7 @@ class AccountPage extends StatelessWidget {
             ),
           ],
         ),
-        bottomNavigationBar: Navbar(currentIndex: 0),
+        bottomNavigationBar: Navbar(currentIndex: 3),
       ),
     );
   }

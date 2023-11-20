@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/controller/ControllerHomePage.dart';
+import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+
+ HomePageController controller=Get.put(HomePageController());
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Color(0xFFF8E8EE),
-      title: Text(
-        'Hello, User',
-        style: TextStyle(
-          fontFamily: 'ProductSans',
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Color(0xFF830835),
+      title: Obx(
+        ()=> Text(
+          'Hello, ${controller.username.value}',
+          style: TextStyle(
+            fontFamily: 'ProductSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF830835),
+          ),
         ),
       ),
       actions: [
@@ -24,7 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           child: CircleAvatar(
             radius: 22,
-            backgroundImage: NetworkImage('https://picsum.photos/seed/772/600'),
+            backgroundImage: AssetImage('assets/noprofile.png'),
           ),
         ),
       ],

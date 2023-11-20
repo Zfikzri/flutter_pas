@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pas/pages/login.dart';
-import 'package:flutter_pas/pages/home.dart';
 import 'package:get/get.dart';
 
 class OnboardingSlide extends StatelessWidget {
