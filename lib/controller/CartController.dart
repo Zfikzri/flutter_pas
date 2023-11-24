@@ -53,12 +53,16 @@ class CartController extends GetxController {
     cartItems[index].decreaseQuantity();
   }
 
-  double get totalPrice {
+  var totalPrice = 0.0.obs;
+
+  void updateTotalPrice(List<bool> itemCheckedState) {
     double total = 0.0;
-    for (CartItem item in cartItems) {
-      total += item.quantity.value * item.price;
+    for (int i = 0; i < cartItems.length; i++) {
+      if (itemCheckedState[i]) {
+        total += cartItems[i].quantity.value * cartItems[i].price;
+      }
     }
-    return total;
+    totalPrice.value = total;
   }
 
   @override

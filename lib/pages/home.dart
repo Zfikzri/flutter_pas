@@ -47,75 +47,83 @@ class _HomePageState extends State<HomePage> {
             Obx(() {
               return Column(
                 children: [
-                  Header(title: "Popular", subTitle: "Show All"),
+                  Header(title: "Popular"),
                   Padding(
                     padding: allPadding,
                     child: Container(
                       height: 270,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount:
-                            productController.productResponModelCtr.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final product =
-                              productController.productResponModelCtr[index];
-                          return GestureDetector(
-                            onTap: () {
-                              Get.to(() => DetailPage(product: product));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Card(
-                                child: Container(
-                                  width: 160,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.network(
-                                          product.imageLink,
-                                          height: 160,
-                                          width: double.infinity,
-                                          fit: BoxFit.cover,
-                                          alignment: Alignment.center,
+                      child: productController.isLoading.value
+                          ? Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: productController
+                                  .productResponModelCtr.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final product = productController
+                                    .productResponModelCtr[index];
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => DetailPage(product: product));
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Card(
+                                      child: Container(
+                                        width: 160,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              child: Image.network(
+                                                product.imageLink,
+                                                height: 160,
+                                                width: double.infinity,
+                                                fit: BoxFit.cover,
+                                                alignment: Alignment.center,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 8.0,
+                                                  vertical: 3.0),
+                                              child: Text(
+                                                product.name,
+                                                maxLines: 2,
+                                                style: TextStyle(
+                                                    fontFamily: "ProductSans",
+                                                    color: Color(0xFF830835),
+                                                    fontSize: 13),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 8.0,
+                                                  vertical: 3.0),
+                                              child: Text(
+                                                '\$${product.price}',
+                                                style: TextStyle(
+                                                    fontFamily: "ProductSans",
+                                                    color: Color(0xFF830835),
+                                                    fontSize: 18),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 8.0, vertical: 3.0),
-                                        child: Text(
-                                          product.name,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                              fontFamily: "ProductSans",
-                                              color: Color(0xFF830835),
-                                              fontSize: 13),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 8.0, vertical: 3.0),
-                                        child: Text(
-                                          '\$${product.price}',
-                                          style: TextStyle(
-                                              fontFamily: "ProductSans",
-                                              color: Color(0xFF830835),
-                                              fontSize: 18),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ),
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
                     ),
                   ),
                 ],
@@ -129,7 +137,7 @@ class _HomePageState extends State<HomePage> {
               padding: allPadding,
               child: Column(
                 children: [
-                  Header(title: "New Stuff", subTitle: "Show All"),
+                  Header(title: "New Stuff"),
                 ],
               ),
             ),

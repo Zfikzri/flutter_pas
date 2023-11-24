@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_pas/controller/CartController.dart';
 import 'package:flutter_pas/models/appbar_cart.dart';
 import 'package:flutter_pas/models/navbar.dart';
-import 'package:get/get.dart';
 
 class Cart extends StatefulWidget {
   const Cart({Key? key}) : super(key: key);
@@ -54,7 +54,7 @@ class _CartState extends State<Cart> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 16,
-                                color: Color(0xff830835)
+                                color: Color(0xff830835),
                               ),
                             ),
                           ],
@@ -68,7 +68,8 @@ class _CartState extends State<Cart> {
                         physics: NeverScrollableScrollPhysics(),
                         itemCount: CartController.to.cartItems.length,
                         itemBuilder: (context, index) {
-                          final cartItem = CartController.to.cartItems[index];
+                          final cartItem =
+                              CartController.to.cartItems[index];
                           return Card(
                             elevation: 2,
                             margin: EdgeInsets.all(8),
@@ -80,9 +81,7 @@ class _CartState extends State<Cart> {
                                   child: Checkbox(
                                     value: itemCheckedState[index],
                                     onChanged: (value) {
-                                      setState(() {
-                                        itemCheckedState[index] = value!;
-                                      });
+                                      updateItemCheckedState(index, value!);
                                     },
                                   ),
                                   backgroundColor: Colors.transparent,
@@ -145,8 +144,8 @@ class _CartState extends State<Cart> {
                                                 .decreaseQuantity(index);
                                           },
                                         ),
-                                        Obx(() =>
-                                            Text('${cartItem.quantity.value}')),
+                                        Obx(() => Text(
+                                            '${cartItem.quantity.value}')),
                                         IconButton(
                                           icon: Icon(Icons.add),
                                           onPressed: () {
@@ -178,14 +177,14 @@ class _CartState extends State<Cart> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Total: \$${CartController.to.totalPrice.toStringAsFixed(2)}',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xff830835),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      Obx(() => Text(
+                            'Total: \$${CartController.to.totalPrice.toStringAsFixed(2)}',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xff830835),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )),
                       SizedBox(height: 16),
                     ],
                   ),
@@ -193,13 +192,13 @@ class _CartState extends State<Cart> {
                     width: 120,
                     child: ElevatedButton(
                       onPressed: () {
-                      
+                        showPaymentSuccessfulSnackBar(context);
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xFF871740),
                         onPrimary: Colors.white,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 12),
                         textStyle: TextStyle(
                           fontSize: 16,
                           fontFamily: "ProductSans",
@@ -217,6 +216,21 @@ class _CartState extends State<Cart> {
         ],
       ),
       bottomNavigationBar: Navbar(currentIndex: 2),
+    );
+  }
+
+  void updateItemCheckedState(int index, bool value) {
+    setState(() {
+      itemCheckedState[index] = value;
+    });
+    CartController.to.updateTotalPrice(itemCheckedState); 
+  }
+
+  void showPaymentSuccessfulSnackBar(BuildContext context) {
+      Get.snackbar(
+      'Status OK',
+      'Payment Succesful!',
+      duration: Duration(seconds: 3),
     );
   }
 }

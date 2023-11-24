@@ -1,22 +1,35 @@
-// detail.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_pas/api/product.dart';
 import 'package:flutter_pas/controller/CartController.dart';
+import 'package:get/get.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   final Product product;
 
   DetailPage({required this.product});
 
-  void addToCart(Product product) {
+  @override
+  _DetailPageState createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  int quantity = 0;
+
+  void addToCart() {
     CartController.to.addToCart(
       CartItem(
-        name: product.name,
-        brand: product.brand.toString(),
-        price: double.parse(product.price),
-        initialQuantity: 1,
-        imageLink: product.imageLink,
+        name: widget.product.name,
+        brand: widget.product.brand.toString(),
+        price: double.parse(widget.product.price),
+        initialQuantity: quantity,
+        imageLink: widget.product.imageLink,
       ),
+    );
+
+    Get.snackbar(
+      'Add Succesful',
+      'Item Added to cart',
+      duration: Duration(seconds: 3),
     );
   }
 
@@ -32,7 +45,7 @@ class DetailPage extends StatelessWidget {
             width: 350,
             height: 350,
             child: Image.network(
-              product.imageLink,
+              widget.product.imageLink,
               fit: BoxFit.cover,
             ),
           ),
@@ -42,7 +55,7 @@ class DetailPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 5),
             child: Text(
-              product.name,
+              widget.product.name,
               style: TextStyle(
                 fontFamily: 'ProductSans',
                 fontWeight: FontWeight.bold,
@@ -54,7 +67,7 @@ class DetailPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 5),
             child: Text(
-              'by ' + product.brand.toString(),
+              'by ' + widget.product.brand.toString(),
               style: TextStyle(
                 fontFamily: 'ProductSans',
                 fontSize: 17,
@@ -80,7 +93,7 @@ class DetailPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(5),
             child: Text(
-              product.description,
+              widget.product.description,
               style: TextStyle(
                 fontFamily: 'ProductSans',
                 fontSize: 16,
@@ -97,7 +110,7 @@ class DetailPage extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    '\$${product.price}',
+                    '\$${widget.product.price}',
                     style: TextStyle(
                       fontFamily: 'ProductSans',
                       fontSize: 27,
@@ -110,27 +123,38 @@ class DetailPage extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Container(
-                      padding: EdgeInsets.only(right: 5),
-                      child: Icon(
+                    IconButton(
+                      icon: Icon(
                         Icons.remove,
                         color: Color(0xffA3A3A3),
                       ),
+                      onPressed: () {
+                        if (quantity > 1) {
+                          setState(() {
+                            quantity--;
+                          });
+                        }
+                      },
                     ),
                     Text(
-                      '0',
+                      '$quantity',
                       style: TextStyle(
-                          fontFamily: 'ProductSans',
-                          fontSize: 27,
-                          color: Colors.black),
+                        fontFamily: 'ProductSans',
+                        fontSize: 27,
+                        color: Colors.black,
+                      ),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(left: 5),
-                      child: Icon(
+                    IconButton(
+                      icon: Icon(
                         Icons.add_circle_rounded,
                         color: Color(0xff830835),
                       ),
-                    )
+                      onPressed: () {
+                        setState(() {
+                          quantity++;
+                        });
+                      },
+                    ),
                   ],
                 )
               ],
@@ -144,7 +168,7 @@ class DetailPage extends StatelessWidget {
                   child: Container(
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () => addToCart(product),
+                      onPressed: () => addToCart(),
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xff830835),
                         shape: RoundedRectangleBorder(

@@ -16,7 +16,7 @@ class Categories extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Header(title: title, subTitle: subTitle),
+        Header(title: title),
         Padding(
           padding: EdgeInsets.all(10.0),
           child: Container(

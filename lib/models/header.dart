@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/pages/catalogue.dart';
+import 'package:get/get.dart';
 
 class Header extends StatelessWidget {
   final String title;
-  final String subTitle; 
 
-  const Header({
+  Header({
     Key? key,
     required this.title,
-    required this.subTitle,
-
   }) : super(key: key);
 
   @override
@@ -23,17 +22,22 @@ class Header extends StatelessWidget {
             style: TextStyle(
               fontSize: 20,
               fontFamily: "ProductSans",
-              color: const Color(0xFF830835),
+              color:  Color(0xFF830835),
             ),
           ),
-            Text(
-              subTitle,
+          InkWell(
+            onTap: () {
+              Get.offAll(() => Catalogue());
+            },
+            child: Text(
+              "Show All",
               style: TextStyle(
-                fontSize:  15,
+                fontSize: 15,
                 fontFamily: "ProductSans",
-                color:  const Color(0xFF820000),
+                color:  Color(0xFF820000),
               ),
             ),
+          ),
         ],
       ),
     );
