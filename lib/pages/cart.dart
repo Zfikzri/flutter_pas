@@ -68,8 +68,7 @@ class _CartState extends State<Cart> {
                         physics: NeverScrollableScrollPhysics(),
                         itemCount: CartController.to.cartItems.length,
                         itemBuilder: (context, index) {
-                          final cartItem =
-                              CartController.to.cartItems[index];
+                          final cartItem = CartController.to.cartItems[index];
                           return Card(
                             elevation: 2,
                             margin: EdgeInsets.all(8),
@@ -144,8 +143,8 @@ class _CartState extends State<Cart> {
                                                 .decreaseQuantity(index);
                                           },
                                         ),
-                                        Obx(() => Text(
-                                            '${cartItem.quantity.value}')),
+                                        Obx(() =>
+                                            Text('${cartItem.quantity.value}')),
                                         IconButton(
                                           icon: Icon(Icons.add),
                                           onPressed: () {
@@ -197,8 +196,8 @@ class _CartState extends State<Cart> {
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xFF871740),
                         onPrimary: Colors.white,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 12),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                         textStyle: TextStyle(
                           fontSize: 16,
                           fontFamily: "ProductSans",
@@ -219,18 +218,34 @@ class _CartState extends State<Cart> {
     );
   }
 
+  void showPaymentSuccessfulSnackBar(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Payment Successful'),
+          content: Text('Thank you for your purchase!'),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                // Tambahkan logika yang perlu dilakukan setelah pembelian
+                // ...
+
+                // Tutup dialog
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void updateItemCheckedState(int index, bool value) {
     setState(() {
       itemCheckedState[index] = value;
     });
-    CartController.to.updateTotalPrice(itemCheckedState); 
-  }
-
-  void showPaymentSuccessfulSnackBar(BuildContext context) {
-      Get.snackbar(
-      'Status OK',
-      'Payment Succesful!',
-      duration: Duration(seconds: 3),
-    );
+    CartController.to.updateTotalPrice(itemCheckedState);
   }
 }
