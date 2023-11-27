@@ -32,7 +32,7 @@ class OnboardingSlide extends StatelessWidget {
           padding: EdgeInsets.all(16),
           height: 300,
           decoration: BoxDecoration(
-            color: Color(0xFFF8E8EE),
+            color: AppColor.colorLight,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(15),
               topRight: Radius.circular(15),

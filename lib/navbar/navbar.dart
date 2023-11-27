@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pas/common/config.dart';
-import '../accountpage.dart';
+import 'package:flutter_pas/pages/accountpage.dart';
+
 
 import 'package:get/get.dart';
 

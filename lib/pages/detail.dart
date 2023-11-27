@@ -45,78 +45,15 @@ class DetailPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
-            width: 350,
-            height: 350,
-            child: Image.network(
-              product.imageLink,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Container(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 5),
-            child: Text(
-              product.name,
-              style: TextStyle(
-                fontFamily: 'ProductSans',
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Color(0xff830835),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 5),
-            child: Text(
-              'by ' + product.brand.toString(),
-              style: TextStyle(
-                fontFamily: 'ProductSans',
-                fontSize: 17,
-                color: Color(0xffC75E84),
-              ),
-            ),
-          ),
-          Container(
-            height: 50,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(5),
-            child: Text(
-              'Description',
-              style: TextStyle(
-                fontFamily: 'ProductSans',
-                fontWeight: FontWeight.bold,
-                fontSize: 17,
-                color: Color(0xff830835),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(5),
-            child: Text(
-              product.description,
-              style: TextStyle(
-                fontFamily: 'ProductSans',
-                fontSize: 16,
-                color: Color(0xffC75E84),
-              ),
-            ),
-          ),
-          Container(
-            height: 25,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(5),
-            child: Row(
+          Expanded(
+            child: ListView(
+              shrinkWrap: true,
               children: [
                 Container(
                   width: 350,
                   height: 350,
                   child: Image.network(
-                    widget.product.imageLink,
+                    product.imageLink,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -126,7 +63,7 @@ class DetailPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: Text(
-                    '\$${product.price}',
+                    product.name,
                     style: TextStyle(
                       fontFamily: 'ProductSans',
                       fontWeight: FontWeight.bold,
@@ -138,7 +75,7 @@ class DetailPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: Text(
-                    'by ' + widget.product.brand.toString(),
+                    'by ' + product.brand.toString(),
                     style: TextStyle(
                       fontFamily: 'ProductSans',
                       fontSize: 17,
@@ -149,157 +86,120 @@ class DetailPage extends StatelessWidget {
                 Container(
                   height: 50,
                 ),
-                 Row(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.remove,
-                    color: Color(0xffA3A3A3),
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Text(
+                    'Description',
+                    style: TextStyle(
+                      fontFamily: 'ProductSans',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                      color: AppColor.textColor,
+                    ),
                   ),
-                  onPressed: () {
-                    // Handle decrease quantity
-                    if (controller.quantity.value > 1) {
-                      controller.updateQuantity(controller.quantity.value - 1);
-                    }
-                  },
                 ),
-                Obx(() => Text(
-                  '${controller.quantity}',
-                  style: TextStyle(
-                    fontFamily: 'ProductSans',
-                    fontSize: 20,
-                    color: Color(0xff830835),
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Text(
+                    product.description,
+                    style: TextStyle(
+                      fontFamily: 'ProductSans',
+                      fontSize: 16,
+                      color: AppColor.backgroundColor,
+                    ),
                   ),
-                )),
-                IconButton(
-                  icon: Icon(
-                    Icons.add_circle_rounded,
-                    color: Color(0xff830835),
-                  ),
-                  onPressed: () {
-                    // Handle increase quantity
-                    controller.updateQuantity(controller.quantity.value + 1);
-                  },
                 ),
-              ],
-            ),
+                Container(
+                  height: 25,
+                ),
+                
+                
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(5),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () => addToCart(),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xff830835),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      ),
-                      child: Text(
-                        'Add to cart',
-                        style: TextStyle(
-                          fontFamily: 'ProductSans',
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-                padding: const EdgeInsets.all(5),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        '\$${widget.product.price}',
-                        style: TextStyle(
-                          fontFamily: 'ProductSans',
-                          fontSize: 27,
-                          color: AppColor.textColor,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 10,
-                    ),
-                    Row(
-                      children: [
-                        IconButton(
-                          icon: Icon(
-                            Icons.remove,
-                            color: AppColor.colorGrey,
-                          ),
-                          onPressed: () {
-                            if (quantity > 1) {
-                              setState(() {
-                                quantity--;
-                              });
-                            }
-                          },
-                        ),
-                        Text(
-                          '$quantity',
+                  padding: const EdgeInsets.all(5),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '\$${product.price}',
                           style: TextStyle(
                             fontFamily: 'ProductSans',
                             fontSize: 27,
-                            color: AppColor.colorBlack,
-                          ),
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.add_circle_rounded,
                             color: AppColor.textColor,
                           ),
-                          onPressed: () {
-                            setState(() {
-                              quantity++;
-                            });
-                          },
                         ),
-                      ],
-                    )
-                  ],
+                      ),
+                      Container(
+                        width: 10,
+                      ),
+                       Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          Icons.remove,
+                          color: AppColor.colorGrey,
+                        ),
+                        onPressed: () {
+                          // Handle decrease quantity
+                          if (controller.quantity.value > 1) {
+                            controller.updateQuantity(controller.quantity.value - 1);
+                          }
+                        },
+                      ),
+                      Obx(() => Text(
+                        '${controller.quantity}',
+                        style: TextStyle(
+                          fontFamily: 'ProductSans',
+                          fontSize: 20,
+                          color:AppColor.textColor,
+                        ),
+                      )),
+                      IconButton(
+                        icon: Icon(
+                          Icons.add_circle_rounded,
+                          color: AppColor.textColor,
+                        ),
+                        onPressed: () {
+                          // Handle increase quantity
+                          controller.updateQuantity(controller.quantity.value + 1);
+                        },
+                      ),
+                    ],
+                  ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(5),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 50,
-                        child: ElevatedButton(
-                          onPressed: () => addToCart(),
-                          style: ElevatedButton.styleFrom(
-                            primary: AppColor.textColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
+          Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () => addToCart(),
+                            style: ElevatedButton.styleFrom(
+                              primary: AppColor.textColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
                             ),
-                          ),
-                          child: Text(
-                            'Add to cart',
-                            style: TextStyle(
-                              fontFamily: 'ProductSans',
-                              color: AppColor.colorWhite,
-                              fontSize: 20,
+                            child: Text(
+                              'Add to cart',
+                              style: TextStyle(
+                                fontFamily: 'ProductSans',
+                                color: AppColor.colorWhite,
+                                fontSize: 20,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              )
+                    ],
+                  ),
+                )
         ],
       ),
     );
