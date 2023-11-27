@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 import 'package:flutter_pas/controller/ControllerLogin.dart';
 import 'package:flutter_pas/pages/signup.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ class LoginPage extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10)),
-                  color: Color(0xffF8E8EE)),
+                  color: AppColor.colorLight),
               margin: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.3),
                 width: double.infinity,
@@ -38,7 +39,7 @@ class LoginPage extends StatelessWidget {
                             fontFamily: 'ProductSans',
                             fontWeight: FontWeight.bold,
                             fontSize: 24,
-                            color: Color(0xff830835)),
+                            color: AppColor.textColor),
                         textAlign: TextAlign.center),
                     SizedBox(
                       width: 300,
@@ -47,7 +48,7 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(
                             fontFamily: 'ProductSans',
                             fontSize: 14,
-                            color: Color(0xffC75E84)),
+                            color: AppColor.backgroundColor),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -61,24 +62,24 @@ class LoginPage extends StatelessWidget {
                         controller: ctrUsername,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.person),
-                            prefixIconColor: Color(0xffC75E84),
+                            prefixIconColor: AppColor.backgroundColor,
                             hintText: 'Username',
                             hintStyle: TextStyle(
                               fontFamily: 'ProductSans',
-                              color: Color(0xffC75E84),
+                              color: AppColor.backgroundColor,
                             ),
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color(0xffC75E84), width: 1)),
+                                    color: AppColor.backgroundColor, width: 1)),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Color(0xffC75E84), width: 1),
+                                  color:  AppColor.backgroundColor, width: 1),
                             ),
-                            focusColor: Color(0xffC75E84),
+                            focusColor:  AppColor.backgroundColor,
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 10)),
                         style: TextStyle(
-                            color: Color(0xffC75E84),
+                            color: AppColor.backgroundColor,
                             fontFamily: 'ProductSans'),
                       ),
                     ),
@@ -92,24 +93,24 @@ class LoginPage extends StatelessWidget {
                         obscureText: true,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.lock),
-                            prefixIconColor: Color(0xffC75E84),
+                            prefixIconColor:  AppColor.backgroundColor,
                             hintText: 'Password',
                             hintStyle: TextStyle(
                               fontFamily: 'ProductSans',
-                              color: Color(0xffC75E84),
+                              color:  AppColor.backgroundColor,
                             ),
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color(0xffC75E84), width: 1)),
+                                    color:  AppColor.backgroundColor, width: 1)),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Color(0xffC75E84), width: 1),
+                                  color:  AppColor.backgroundColor, width: 1),
                             ),
-                            focusColor: Color(0xffC75E84),
+                            focusColor: AppColor.backgroundColor,
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 10)),
                         style: TextStyle(
-                            color: Color(0xffC75E84),
+                            color:  AppColor.backgroundColor,
                             fontFamily: 'ProductSans'),
                       ),
                     ),
@@ -125,14 +126,14 @@ class LoginPage extends StatelessWidget {
 
                         },
                         style: ElevatedButton.styleFrom(
-                            primary: Color(0xffC75E84),
+                            primary:  AppColor.backgroundColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5))),
                         child: Text(
                           'Log in',
                           style: TextStyle(
                               fontFamily: 'ProductSans',
-                              color: Colors.white,
+                              color: AppColor.colorWhite,
                               fontSize: 16),
                         ),
                       ),
@@ -148,7 +149,7 @@ class LoginPage extends StatelessWidget {
                           'Dont have account?',
                           style: TextStyle(
                               fontSize: 14,
-                              color: Color(0xffC75E84),
+                              color:  AppColor.backgroundColor,
                               fontFamily: 'ProductSans'),
                         ),
                         InkWell(
@@ -159,7 +160,7 @@ class LoginPage extends StatelessWidget {
                                 fontFamily: 'ProductSans',
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xffA52B57)),
+                                color:  AppColor.backgroundColor),
                           ),
                         ),
                       ],

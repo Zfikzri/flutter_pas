@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 import 'package:flutter_pas/pages/catalogue.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +23,7 @@ class Header extends StatelessWidget {
             style: TextStyle(
               fontSize: 20,
               fontFamily: "ProductSans",
-              color:  Color(0xFF830835),
+              color:  AppColor.textColor,
             ),
           ),
           InkWell(
@@ -34,7 +35,7 @@ class Header extends StatelessWidget {
               style: TextStyle(
                 fontSize: 15,
                 fontFamily: "ProductSans",
-                color:  Color(0xFF820000),
+                color:  AppColor.textColor,
               ),
             ),
           ),

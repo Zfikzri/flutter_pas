@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 import 'package:flutter_pas/controller/ControllerProfile.dart';
 import 'package:flutter_pas/models/navbar.dart';
 import 'package:flutter_pas/pages/login.dart';
@@ -10,7 +11,7 @@ class AccountPage extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Color.fromRGBO(248, 232, 238, 1),
+          backgroundColor: AppColor.colorLight,
           title: Text('Confirmation'),
           content: Text('Are you sure you want to log out?'),
           actions: <Widget>[
@@ -42,7 +43,7 @@ class AccountPage extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
-        backgroundColor: Color.fromRGBO(248, 232, 238, 1),
+        backgroundColor: AppColor.colorLight,
         body: Stack(
           children: [
             // Gambar latar belakang setengah halaman
@@ -78,7 +79,7 @@ class AccountPage extends StatelessWidget {
                     child: Obx(() =>Text(
                         '${controller.username.value}',
                         style: TextStyle(
-                            color: Color.fromRGBO(135, 23, 64, 1), fontSize: 24, fontFamily: 'ProductSans'),
+                            color: AppColor.textColor, fontSize: 24, fontFamily: 'ProductSans'),
                       ),
                     ),
                   ),
@@ -88,7 +89,7 @@ class AccountPage extends StatelessWidget {
                       SizedBox(width: 20),
                       Icon(
                         Icons.settings,
-                        color: Color.fromRGBO(135, 23, 64, 1),
+                        color: AppColor.textColor,
                         size: 24,
                       ),
                       SizedBox(width: 12),
@@ -96,13 +97,13 @@ class AccountPage extends StatelessWidget {
                         'Setting',
                         style: TextStyle(
                           fontSize: 16,
-                          color: Color.fromRGBO(135, 23, 64, 1),
+                          color: AppColor.textColor,
                         ),
                       ),
                       Spacer(),
                       Icon(
                         Icons.arrow_forward,
-                        color: Color.fromRGBO(135, 23, 64, 1),
+                        color: AppColor.textColor,
                         size: 24,
                       ),
                       SizedBox(width: 20),
@@ -115,7 +116,7 @@ class AccountPage extends StatelessWidget {
                       SizedBox(width: 20),
                       Icon(
                         Icons.payment,
-                        color: Color.fromRGBO(135, 23, 64, 1),
+                        color: AppColor.textColor,
                         size: 24,
                       ),
                       SizedBox(width: 12),
@@ -123,13 +124,13 @@ class AccountPage extends StatelessWidget {
                         'Payment',
                         style: TextStyle(
                           fontSize: 16,
-                          color: Color.fromRGBO(135, 23, 64, 1),
+                          color: AppColor.textColor,
                         ),
                       ),
                       Spacer(),
                       Icon(
                         Icons.arrow_forward,
-                        color: Color.fromRGBO(135, 23, 64, 1),
+                        color: AppColor.textColor,
                         size: 24,
                       ),
                       SizedBox(width: 20),
@@ -139,7 +140,7 @@ class AccountPage extends StatelessWidget {
                   Container(
                     height: 1,
                     width: 480, // Sesuaikan panjang garis bawah
-                    color: Color.fromRGBO(135, 23, 64, 1), // Warna garis bawah
+                    color: AppColor.textColor, // Warna garis bawah
                   ),
                   SizedBox(height: 16),
                   Row(
@@ -147,7 +148,7 @@ class AccountPage extends StatelessWidget {
                       SizedBox(width: 20),
                       Icon(
                         Icons.policy,
-                        color: Color.fromRGBO(135, 23, 64, 1),
+                        color: AppColor.textColor,
                         size: 24,
                       ),
                       SizedBox(width: 12),
@@ -155,13 +156,13 @@ class AccountPage extends StatelessWidget {
                         'Terms & Privacy Policy',
                         style: TextStyle(
                           fontSize: 16,
-                          color: Color.fromRGBO(135, 23, 64, 1),
+                          color: AppColor.textColor,
                         ),
                       ),
                       Spacer(),
                       Icon(
                         Icons.arrow_forward,
-                        color: Color.fromRGBO(135, 23, 64, 1),
+                        color: AppColor.textColor,
                         size: 24,
                       ),
                       SizedBox(width: 20),
@@ -177,7 +178,7 @@ class AccountPage extends StatelessWidget {
                         SizedBox(width: 20),
                         Icon(
                           Icons.logout,
-                          color: Color.fromRGBO(135, 23, 64, 1),
+                          color: AppColor.textColor,
                           size: 24,
                         ),
                         SizedBox(width: 12),
@@ -185,13 +186,13 @@ class AccountPage extends StatelessWidget {
                           'Logout',
                           style: TextStyle(
                             fontSize: 16,
-                            color: Color.fromRGBO(135, 23, 64, 1),
+                            color: AppColor.textColor,
                           ),
                         ),
                         Spacer(),
                         Icon(
                           Icons.arrow_forward,
-                          color: Color.fromRGBO(135, 23, 64, 1),
+                          color: AppColor.textColor,
                           size: 24,
                         ),
                         SizedBox(width: 20),
@@ -205,20 +206,20 @@ class AccountPage extends StatelessWidget {
                       SizedBox(width: 20),
                       Icon(
                         Icons.support,
-                        color: Color.fromRGBO(135, 23, 64, 1),
+                        color: AppColor.textColor,
                         size: 24,
                       ),
                       SizedBox(width: 12),
                       Text(
                         'Support',
                         style: TextStyle(
-                          color: Color.fromRGBO(135, 23, 64, 1),
+                          color: AppColor.textColor,
                         ),
                       ),
                       Spacer(),
                       Icon(
                         Icons.arrow_forward,
-                        color: Color.fromRGBO(135, 23, 64, 1),
+                        color: AppColor.textColor,
                         size: 24,
                       ),
                       SizedBox(width: 20),

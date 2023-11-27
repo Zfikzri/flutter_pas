@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 import 'package:flutter_pas/controller/ControllerSignup.dart';
 import 'package:flutter_pas/pages/login.dart';
 import 'package:get/get.dart';
@@ -23,7 +24,7 @@ class SignUpPage extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10)),
-                  color: Color(0xffF8E8EE)),
+                  color: AppColor.colorLight),
               margin:
                   EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25),
               height: double.infinity,
@@ -40,7 +41,7 @@ class SignUpPage extends StatelessWidget {
                             fontFamily: 'ProductSans',
                             fontWeight: FontWeight.bold,
                             fontSize: 24,
-                            color: Color(0xff830835)),
+                            color: AppColor.textColor),
                         textAlign: TextAlign.center),
                     SizedBox(
                       width: 300,
@@ -49,7 +50,7 @@ class SignUpPage extends StatelessWidget {
                         style: TextStyle(
                             fontFamily: 'ProductSans',
                             fontSize: 14,
-                            color: Color(0xffC75E84)),
+                            color: AppColor.backgroundColor),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -63,23 +64,23 @@ class SignUpPage extends StatelessWidget {
                         controller: ctrUsername,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.person),
-                            prefixIconColor: Color(0xffC75E84),
+                            prefixIconColor: AppColor.backgroundColor,
                             hintText: 'Username',
                             hintStyle: TextStyle(
                               fontFamily: 'ProductSans',
-                              color: Color(0xffC75E84),
+                              color: AppColor.backgroundColor,
                             ),
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color(0xffC75E84), width: 1)),
+                                    color: AppColor.backgroundColor, width: 1)),
                             focusedBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Color(0xffC75E84), width: 1),
+                                  BorderSide(color: AppColor.backgroundColor, width: 1),
                             ),
-                            focusColor: Color(0xffC75E84),
+                            focusColor: AppColor.backgroundColor,
                             contentPadding: EdgeInsets.symmetric(horizontal: 10)),
                         style: TextStyle(
-                            color: Color(0xffC75E84), fontFamily: 'ProductSans'),
+                            color: AppColor.backgroundColor, fontFamily: 'ProductSans'),
                       ),
                     ),
                     SizedBox(
@@ -91,23 +92,23 @@ class SignUpPage extends StatelessWidget {
                         controller: ctrEmail,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.mail),
-                            prefixIconColor: Color(0xffC75E84),
+                            prefixIconColor: AppColor.backgroundColor,
                             hintText: 'Email',
                             hintStyle: TextStyle(
                               fontFamily: 'ProductSans',
-                              color: Color(0xffC75E84),
+                              color: AppColor.backgroundColor,
                             ),
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color(0xffC75E84), width: 1)),
+                                    color: AppColor.backgroundColor, width: 1)),
                             focusedBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Color(0xffC75E84), width: 1),
+                                  BorderSide(color: AppColor.backgroundColor, width: 1),
                             ),
-                            focusColor: Color(0xffC75E84),
+                            focusColor: AppColor.backgroundColor,
                             contentPadding: EdgeInsets.symmetric(horizontal: 10)),
                         style: TextStyle(
-                            color: Color(0xffC75E84), fontFamily: 'ProductSans'),
+                            color: AppColor.backgroundColor, fontFamily: 'ProductSans'),
                       ),
                     ),
                     SizedBox(
@@ -120,23 +121,23 @@ class SignUpPage extends StatelessWidget {
                         obscureText: true,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.lock),
-                            prefixIconColor: Color(0xffC75E84),
+                            prefixIconColor: AppColor.backgroundColor,
                             hintText: 'Password',
                             hintStyle: TextStyle(
                               fontFamily: 'ProductSans',
-                              color: Color(0xffC75E84),
+                              color: AppColor.backgroundColor,
                             ),
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color(0xffC75E84), width: 1)),
+                                    color: AppColor.backgroundColor, width: 1)),
                             focusedBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Color(0xffC75E84), width: 1),
+                                  BorderSide(color: AppColor.backgroundColor, width: 1),
                             ),
-                            focusColor: Color(0xffC75E84),
+                            focusColor: AppColor.backgroundColor,
                             contentPadding: EdgeInsets.symmetric(horizontal: 10)),
                         style: TextStyle(
-                            color: Color(0xffC75E84), fontFamily: 'ProductSans'),
+                            color:AppColor.backgroundColor, fontFamily: 'ProductSans'),
                       ),
                     ),
                     SizedBox(height:10,),
@@ -148,23 +149,23 @@ class SignUpPage extends StatelessWidget {
                         obscureText: true,
                         decoration: InputDecoration(
                             prefixIcon: Icon(Icons.lock_person),
-                            prefixIconColor: Color(0xffC75E84),
+                            prefixIconColor:AppColor.backgroundColor,
                             hintText: 'Confirm Password',
                             hintStyle: TextStyle(
                               fontFamily: 'ProductSans',
-                              color: Color(0xffC75E84),
+                              color: AppColor.backgroundColor,
                             ),
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Color(0xffC75E84), width: 1)),
+                                    color:AppColor.backgroundColor, width: 1)),
                             focusedBorder: OutlineInputBorder(
                               borderSide:
-                                  BorderSide(color: Color(0xffC75E84), width: 1),
+                                  BorderSide(color: AppColor.backgroundColor, width: 1),
                             ),
-                            focusColor: Color(0xffC75E84),
+                            focusColor: AppColor.backgroundColor,
                             contentPadding: EdgeInsets.symmetric(horizontal: 10)),
                         style: TextStyle(
-                            color: Color(0xffC75E84), fontFamily: 'ProductSans'),
+                            color: AppColor.backgroundColor, fontFamily: 'ProductSans'),
                       ),
                     ),
                     SizedBox(
@@ -178,14 +179,14 @@ class SignUpPage extends StatelessWidget {
                            registerController.registerAction(ctrUsername.text, ctrEmail.text, ctrPassword.text, ctrConfirm.text);
                         },
                         style: ElevatedButton.styleFrom(
-                            primary: Color(0xffC75E84),
+                            primary: AppColor.backgroundColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5))),
                         child: Text(
                           'Sign up',
                           style: TextStyle(
                               fontFamily: 'ProductSans',
-                              color: Colors.white,
+                              color: AppColor.colorWhite,
                               fontSize: 16),
                         ),
                       ),
@@ -201,12 +202,12 @@ class SignUpPage extends StatelessWidget {
                             'Already have account?',
                             style: TextStyle(
                                 fontSize: 14,
-                                color: Color(0xffC75E84),
+                                color: AppColor.backgroundColor,
                                 fontFamily: 'ProductSans'),
                           ),
                           InkWell(
                             onTap: () => Get.to(LoginPage()),
-                            child: Text(' Log In', style: TextStyle(fontFamily: 'ProductSans', fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xffA52B57)),),
+                            child: Text(' Log In', style: TextStyle(fontFamily: 'ProductSans', fontSize: 14, fontWeight: FontWeight.bold, color:AppColor.textColor),),
                           ),
                         ],
                       ),

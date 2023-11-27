@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 import 'package:flutter_pas/pages/login.dart';
 import 'package:get/get.dart';
 
@@ -47,7 +48,7 @@ class OnboardingSlide extends StatelessWidget {
                   fontSize: 22,
                   fontFamily: "ProductSans-Bold",
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF830835),
+                  color: AppColor.textColor,
                 ),
               ),
               SizedBox(height: 10),
@@ -56,7 +57,7 @@ class OnboardingSlide extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 15,
                   fontFamily: "ProductSans",
-                  color: Color(0xFFC75E84),
+                  color: AppColor.backgroundColor,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -72,7 +73,7 @@ class OnboardingSlide extends StatelessWidget {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFC75E84),
+                  primary: AppColor.backgroundColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -80,7 +81,7 @@ class OnboardingSlide extends StatelessWidget {
                 ),
                 child: Text(
                   'Next',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                  style: TextStyle(color: AppColor.colorWhite, fontSize: 18),
                 ),
               )
             ],

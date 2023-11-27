@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 
 class CategoryCatalogue extends StatelessWidget {
   final List<String> categories;
@@ -20,7 +21,7 @@ class CategoryCatalogue extends StatelessWidget {
   }
  
   Widget buildCategoryCard(String category) {
-    Color cardColor = category == "Popular" ? Color(0xFFC75E84) : Colors.white;
+    Color cardColor = category == "Popular" ? AppColor.backgroundColor : AppColor.colorLight;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 4.0),
@@ -38,7 +39,7 @@ class CategoryCatalogue extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: "ProductSans",
-                color: category == "Popular" ? Colors.white : Color(0xFF830835),
+                color: category == "Popular" ? AppColor.colorWhite : AppColor.textColor,
               ),
             ),
           ),

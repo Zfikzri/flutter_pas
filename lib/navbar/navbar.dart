@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 import '../accountpage.dart';
 
 import 'package:get/get.dart';
@@ -22,9 +23,9 @@ class Navbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Color.fromRGBO(248, 232, 238, 1),
-      selectedItemColor: Color.fromRGBO(199, 94, 132, 1),
-      unselectedItemColor: Color.fromRGBO(199, 94, 132, 1),
+      backgroundColor: AppColor.colorLight,
+      selectedItemColor: AppColor.backgroundColor,
+      unselectedItemColor: AppColor.backgroundColor,
       currentIndex: currentIndex,
       onTap: (index) => onTabTapped(context, index),
       items: [

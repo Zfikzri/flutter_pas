@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 import 'package:get/get.dart';
 import 'package:flutter_pas/controller/CartController.dart';
 import 'package:flutter_pas/models/appbar_cart.dart';
@@ -26,7 +27,7 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarCart(),
-      backgroundColor: Color(0xFFF8E8EE),
+      backgroundColor: AppColor.colorLight,
       body: Column(
         children: [
           Expanded(
@@ -44,7 +45,7 @@ class _CartState extends State<Cart> {
                               'Your cart is empty',
                               style: TextStyle(
                                 fontSize: 18,
-                                color: Color(0xff830835),
+                                color: AppColor.textColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -54,7 +55,7 @@ class _CartState extends State<Cart> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 16,
-                                color: Color(0xff830835),
+                                color: AppColor.textColor,
                               ),
                             ),
                           ],
@@ -83,7 +84,7 @@ class _CartState extends State<Cart> {
                                       updateItemCheckedState(index, value!);
                                     },
                                   ),
-                                  backgroundColor: Colors.transparent,
+                                  backgroundColor: AppColor.colorTransparant,
                                 ),
                                 title: Row(
                                   children: [
@@ -169,7 +170,7 @@ class _CartState extends State<Cart> {
           if (itemCheckedState.contains(true))
             Container(
               padding: EdgeInsets.all(16.0),
-              color: Colors.white,
+              color: AppColor.colorWhite,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -180,7 +181,7 @@ class _CartState extends State<Cart> {
                             'Total: \$${CartController.to.totalPrice.toStringAsFixed(2)}',
                             style: TextStyle(
                               fontSize: 18,
-                              color: Color(0xff830835),
+                              color: AppColor.textColor,
                               fontWeight: FontWeight.bold,
                             ),
                           )),
@@ -194,8 +195,8 @@ class _CartState extends State<Cart> {
                         showPaymentSuccessfulSnackBar(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF871740),
-                        onPrimary: Colors.white,
+                        primary: AppColor.textColor,
+                        onPrimary: AppColor.colorWhite,
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                         textStyle: TextStyle(

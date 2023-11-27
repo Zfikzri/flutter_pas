@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 import 'package:flutter_pas/pages/onboarding.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +23,7 @@ class SplashScreen extends StatelessWidget {
               style: TextStyle(
                 fontFamily: "Gloria Ramsey",
                 fontSize: 115,
-                color: Color(0xFFA52B57),  
+                color: AppColor.textColor,  
                  height: 0.10,
               ),
          
@@ -32,7 +33,7 @@ class SplashScreen extends StatelessWidget {
               style: TextStyle(
                 fontFamily: "ProductSans",
                 fontSize: 19,
-                color: Color(0xFFC75E84), 
+                color: AppColor.backgroundColor, 
                
               ),
         

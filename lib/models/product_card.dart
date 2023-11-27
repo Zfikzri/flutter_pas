@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pas/api/product.dart';
+import 'package:flutter_pas/common/config.dart';
 import 'package:flutter_pas/controller/ControllerProduct.dart';
 import 'package:flutter_pas/pages/detail.dart';
 import 'package:get/get.dart';
@@ -78,7 +79,7 @@ class ProductListWidget extends StatelessWidget {
                   maxLines: 2,
                   style: TextStyle(
                     fontFamily: "ProductSans",
-                    color: Color(0xFF830835),
+                    color: AppColor.textColor,
                     fontSize: 13,
                   ),
                 ),
@@ -92,7 +93,7 @@ class ProductListWidget extends StatelessWidget {
                   '\$${product.price}',
                   style: TextStyle(
                     fontFamily: "ProductSans",
-                    color: Color(0xFF830835),
+                    color: AppColor.textColor,
                     fontSize: 18,
                   ),
                 ),

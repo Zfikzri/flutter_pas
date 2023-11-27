@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
@@ -21,7 +22,7 @@ class CustomTextField extends StatelessWidget {
           hintText: hintText,
           prefixIcon: Icon(Icons.search),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: AppColor.colorWhite,
           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 import 'package:flutter_pas/controller/ControllerProduct.dart';
 import 'package:flutter_pas/models/appbar.dart';
 import 'package:flutter_pas/models/categories.dart';
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: CustomAppBar(),
-      backgroundColor: Color(0xFFF8E8EE),
+      backgroundColor: AppColor.colorLight,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                                       child: Container(
                                         width: 160,
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: AppColor.colorWhite,
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         child: Column(
@@ -100,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                                                 maxLines: 2,
                                                 style: TextStyle(
                                                     fontFamily: "ProductSans",
-                                                    color: Color(0xFF830835),
+                                                    color: AppColor.textColor,
                                                     fontSize: 13),
                                               ),
                                             ),
@@ -112,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                                                 '\$${product.price}',
                                                 style: TextStyle(
                                                     fontFamily: "ProductSans",
-                                                    color: Color(0xFF830835),
+                                                    color: AppColor.textColor,
                                                     fontSize: 18),
                                               ),
                                             ),

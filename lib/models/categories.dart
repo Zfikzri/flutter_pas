@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pas/common/config.dart';
 import 'package:flutter_pas/models/header.dart';
 
 class Categories extends StatelessWidget {
@@ -71,7 +72,7 @@ class CategoryCard extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: "ProductSans",
                   fontSize: 18,
-                  color: Color(0xFF830835),
+                  color: AppColor.textColor,
                 ),
               ),
             ],

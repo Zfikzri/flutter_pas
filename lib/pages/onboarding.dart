@@ -1,3 +1,4 @@
+import 'package:flutter_pas/common/config.dart';
 import 'package:flutter_pas/models/onboarding_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pas/pages/login.dart';
@@ -59,7 +60,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                child: Text(
                'Skip',
                  style: TextStyle(
-                  color: Color(0xFFC75E84), 
+                  color: AppColor.backgroundColor, 
                   fontFamily: "ProductSans",
                   fontSize: 20,
                 ),
@@ -81,7 +82,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(10.0),
-                    color: _currentPage == index ? Color(0xFFC75E84) : Colors.grey, 
+                    color: _currentPage == index ? AppColor.backgroundColor : AppColor.colorGrey 
                   ),
                 );
               }),
