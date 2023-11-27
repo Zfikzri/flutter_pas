@@ -14,6 +14,7 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   List<bool> itemCheckedState = [];
+  late CartItem cartItem;
 
   @override
   void initState() {
@@ -21,6 +22,11 @@ class _CartState extends State<Cart> {
     itemCheckedState =
         List<bool>.filled(CartController.to.cartItems.length, false);
     super.initState();
+
+    final arguments = Get.arguments;
+    if (arguments is List<dynamic> && arguments.isNotEmpty) {
+      cartItem = arguments.first as CartItem;
+    }
   }
 
   @override
@@ -178,7 +184,7 @@ class _CartState extends State<Cart> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Obx(() => Text(
-                            'Total: \$${CartController.to.totalPrice.toStringAsFixed(2)}',
+                            'Total: \$${CartController.to.totalPrice.value.toStringAsFixed(2)}',
                             style: TextStyle(
                               fontSize: 18,
                               color: AppColor.textColor,
@@ -192,7 +198,7 @@ class _CartState extends State<Cart> {
                     width: 120,
                     child: ElevatedButton(
                       onPressed: () {
-                        showPaymentSuccessfulSnackBar(context);
+                        showPaymentDetailsPopup(context);
                       },
                       style: ElevatedButton.styleFrom(
                         primary: AppColor.textColor,
@@ -219,28 +225,119 @@ class _CartState extends State<Cart> {
     );
   }
 
-  void showPaymentSuccessfulSnackBar(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Payment Successful'),
-          content: Text('Thank you for your purchase!'),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                // Tambahkan logika yang perlu dilakukan setelah pembelian
-                // ...
+  void showPaymentDetailsPopup(BuildContext context) {
+    final cartItems = CartController.to.cartItems;
+    double total = CartController.to.totalPrice.value;
 
-                // Tutup dialog
-                Navigator.of(context).pop();
-              },
-              child: Text('OK'),
+    List<CartItem> checkedItems = [];
+    for (int i = 0; i < cartItems.length; i++) {
+      if (itemCheckedState[i]) {
+        checkedItems.add(cartItems[i]);
+      }
+    }
+
+    Get.defaultDialog(
+      title: 'Payment Details',
+      backgroundColor: Color(0xFFF8E8EE),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          for (int i = 0; i < checkedItems.length; i++)
+            ListTile(
+              leading: Image.network(
+                checkedItems[i].imageLink,
+                width: 50,
+                height: 50,
+                fit: BoxFit.cover,
+              ),
+              title: Text(
+                '${checkedItems[i].name} x ${checkedItems[i].quantity.value} - \$${checkedItems[i].price * checkedItems[i].quantity.value}',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          SizedBox(height: 10),
+          Text(
+            'Total: \$${total.toStringAsFixed(2)}',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              primary: Color(0xFFF8E8EE),
+              onPrimary: Colors.black, 
+              elevation: 0, 
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              )),
+          onPressed: () {
+            Get.back();
+          },
+          child: Text('Cancel'),
+        ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              primary: Color(0xff830835), 
+              onPrimary: Colors.white, 
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              )),
+          onPressed: () {
+            Get.back();
+            showPaymentSuccessfulPopup();
+          },
+          child: Text('Buy'),
+        ),
+      ],
+    );
+  }
+
+  void showPaymentSuccessfulPopup() {
+    Get.dialog(
+      AlertDialog(
+        backgroundColor: Color(0xFFF8E8EE),
+        title: Column(
+          children: [
+            Text(
+              'Payment Successfull!!',
+              style: TextStyle(
+                  fontSize: 20.0,
+                  fontFamily: "ProductSans",
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff830835)),
+            ),
+            SizedBox(height: 10.0),
+            Icon(
+              Icons.check_circle_outline,
+              color: Color(0xff830835),
+              size: 90.0,
             ),
           ],
-        );
-      },
+        ),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Get.back();
+            },
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xFFF8E8EE),
+            ),
+            child: null,
+          ),
+        ],
+      ),
+      barrierDismissible: true,
     );
+
+    Future.delayed(Duration(seconds: 4), () {
+      Get.back();
+    });
   }
 
   void updateItemCheckedState(int index, bool value) {
