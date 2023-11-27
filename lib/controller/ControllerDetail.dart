@@ -1,47 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_pas/api/product.dart';
 import 'package:get/get.dart';
 
-class DetailItem {
-  final String name;
-  final String brand;
-  final double price;
-  final RxInt quantity;
-  final String imageLink;
+class ControllerDetail extends GetxController {
+  RxList<Product> listmodelctr = <Product>[].obs;
+  List<Product> ecommercelistmodel = [];
 
-  DetailItem({
-    required this.name,
-    required this.brand,
-    required this.price,
-    required int initialQuantity,
-    required this.imageLink,
-  }) : quantity = initialQuantity.obs;
+  Rx<Product?> selectedProduct = Rx<Product?>(null);
+  PageController pageController = PageController();
+  
 
-  void increaseQuantity() {
-    quantity.value++;
-  }
-
-  void decreaseQuantity() {
-    if (quantity.value > 1) {
-      quantity.value--;
-    }
-  }
-}
-
-class DetailController extends GetxController {
-  static DetailController to = Get.find();
-
-  RxList<DetailItem> detailItems = <DetailItem>[].obs;
-
-
-  void increaseQuantity(int index) {
-    detailItems[index].increaseQuantity();
-  }
-
-  void decreaseQuantity(int index) {
-    detailItems[index].decreaseQuantity();
-  }
+  RxInt quantity = 0.obs;
+  
 
   @override
   void onInit() {
     super.onInit();
+    print("DetailController initialized");
+   
+
+    var arguments = Get.arguments;
+
+    if (arguments != null && arguments is int) {
+      int productId = arguments;
+
+
+      selectedProduct.value = fetchProductDetailsById(productId);
+    } else {
+
+      selectedProduct.value = null;
+    }
   }
+
+
+  Product? fetchProductDetailsById(int productId) {
+    return ecommercelistmodel.firstWhere(
+          (product) => product.id == productId,
+     
+    );
+  }
+
+  void updateQuantity(int newQuantity) {
+    quantity.value = newQuantity;
+  }
+
 }
