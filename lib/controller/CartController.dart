@@ -30,6 +30,8 @@ class CartController extends GetxController {
   static CartController to = Get.find();
 
   RxList<CartItem> cartItems = <CartItem>[].obs;
+  RxDouble totalPrice = 0.0.obs;
+  
 
   void addToCart(CartItem item) {
     var existingItem = cartItems.firstWhereOrNull((e) => e.name == item.name);
@@ -39,6 +41,11 @@ class CartController extends GetxController {
     } else {
       cartItems.add(item);
     }
+  }
+
+   void clearCart() {
+    cartItems.clear();
+
   }
 
   void removeFromCart(CartItem item) {
@@ -53,17 +60,17 @@ class CartController extends GetxController {
     cartItems[index].decreaseQuantity();
   }
 
-  var totalPrice = 0.0.obs;
 
-  void updateTotalPrice(List<bool> itemCheckedState) {
-    double total = 0.0;
-    for (int i = 0; i < cartItems.length; i++) {
-      if (itemCheckedState[i]) {
-        total += cartItems[i].quantity.value * cartItems[i].price;
-      }
+
+   void updateTotalPrice(List<bool> itemCheckedState) {
+  double total = 0;
+  for (int i = 0; i < cartItems.length; i++) {
+    if (itemCheckedState[i]) {
+      total += cartItems[i].price * cartItems[i].quantity.value;
     }
-    totalPrice.value = total;
   }
+  totalPrice.value = total;
+}
 
   @override
   void onInit() {

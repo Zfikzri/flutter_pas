@@ -41,33 +41,7 @@ class _CartState extends State<Cart> {
               child: Column(
                 children: [
                   if (CartController.to.cartItems.isEmpty)
-                    Center(
-                      child: Container(
-                        margin: EdgeInsets.all(16),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Your cart is empty',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: AppColor.textColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: 16),
-                            Text(
-                              'You haven’t added anything yet. Begin\nadding products to your cart and enjoy\nyour shopping experience.',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: AppColor.textColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
+                    buildEmptyCartMessage()
                   else
                     Obx(
                       () => ListView.builder(
@@ -225,6 +199,8 @@ class _CartState extends State<Cart> {
     );
   }
 
+  
+
   void showPaymentDetailsPopup(BuildContext context) {
     final cartItems = CartController.to.cartItems;
     double total = CartController.to.totalPrice.value;
@@ -270,8 +246,8 @@ class _CartState extends State<Cart> {
         ElevatedButton(
           style: ElevatedButton.styleFrom(
               primary: Color(0xFFF8E8EE),
-              onPrimary: Colors.black, 
-              elevation: 0, 
+              onPrimary: Colors.black,
+              elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               )),
@@ -282,8 +258,8 @@ class _CartState extends State<Cart> {
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-              primary: Color(0xff830835), 
-              onPrimary: Colors.white, 
+              primary: Color(0xff830835),
+              onPrimary: Colors.white,
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
@@ -321,15 +297,18 @@ class _CartState extends State<Cart> {
           ],
         ),
         actions: [
-          ElevatedButton(
-            onPressed: () {
-              Get.back();
-            },
-            style: ElevatedButton.styleFrom(
-              primary: Color(0xFFF8E8EE),
-            ),
-            child: null,
+           ElevatedButton(
+          onPressed: () {
+        
+            CartController.to.clearCart();
+            buildEmptyCartMessage();
+            Get.back();
+          },
+          style: ElevatedButton.styleFrom(
+            primary: Color(0xFFF8E8EE),
           ),
+          child: Text('OK'),
+        ),
         ],
       ),
       barrierDismissible: true,
@@ -341,9 +320,40 @@ class _CartState extends State<Cart> {
   }
 
   void updateItemCheckedState(int index, bool value) {
-    setState(() {
-      itemCheckedState[index] = value;
-    });
-    CartController.to.updateTotalPrice(itemCheckedState);
-  }
+  setState(() {
+    itemCheckedState[index] = value;
+  });
+  CartController.to.updateTotalPrice(itemCheckedState);
 }
+
+Widget buildEmptyCartMessage() {
+  return Center(
+    child: Container(
+      margin: EdgeInsets.all(16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Your cart is empty',
+            style: TextStyle(
+              fontSize: 18,
+              color: AppColor.textColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 16),
+          Text(
+            'You haven’t added anything yet. Begin\nadding products to your cart and enjoy\nyour shopping experience.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 16,
+              color: AppColor.textColor,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+}
+
